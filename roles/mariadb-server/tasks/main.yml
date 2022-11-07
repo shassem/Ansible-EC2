@@ -1,0 +1,32 @@
+---
+# tasks file for roles/mariadb-server
+- name: Installing MariaDB Server
+  yum:
+    name: 
+      - "{{ Sql_pk }}"
+      - "{{ pythsql_pk }}"
+    state: present
+
+
+- name: Enable & Start MariaDB
+  ansible.builtin.systemd:
+    name: "{{ Sql_sv }}"
+    state: started
+    enabled: yes
+
+- name: Downloading my.cnf file 
+  ansible.builtin.get_url:
+    url: "{{ cnf_url }}"
+    dest: /var/lib/mysql/
+    mode: 0644
+  notify: restart Maria
+
+- name: MySQL Root Password
+  mysql_user:
+    login_user: "{{ MariaID }}"
+    login_password: "{{ MariaPass }}"
+    user: "{{ MariaID }}"
+    check_implicit_admin: true
+    password: "{{ MariaPass }}"
+    host: localhost
+

@@ -1,0 +1,6 @@
+---
+# vars file for roles/mariadb-server
+Sql_pk: mariadb-server
+Sql_sv: mariadb
+cnf_url: https://drive.google.com/uc?export=download&id=1QIeumZzk1_PL6pVf699ff8iurEnuwk7y
+pythsql_pk: python3-PyMySQL

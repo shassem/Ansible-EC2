@@ -1,0 +1,33 @@
+---
+# tasks file for roles/jenkins-role
+- name: Installing Java
+  yum:
+    name: "{{ java_pk }}"
+    state: present
+
+- name: wget from jenkins.repo
+  ansible.builtin.get_url:
+    url: "{{ jenkins_repo }}"
+    dest: "{{ jenkins_dest }}"
+    mode: 0644
+
+- name: Import a key from a url
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ jenkins_key }}"
+
+- name: yum update
+  yum:
+    name: '*'
+    state: latest
+
+- name: Install jenkins
+  yum:
+    name: "{{ jenkins_pk }}"
+    state: present
+
+- name: Start jenkins
+  ansible.builtin.systemd:
+    name: "{{ jenkins_pk }}"
+    state: started
+    enabled: yes

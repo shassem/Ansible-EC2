@@ -1,0 +1,30 @@
+---
+# tasks file for roles/iti-webserver-role
+- name: "apt-get update"
+  apt:
+    name: "{{ nginx_pk }}"
+    state: present
+
+- name: Copying the html file
+  template:
+    src: index.html.j2
+    dest: "{{ nginx_html_dir_UB }}/index.html"
+    mode: 0644
+  notify:
+    - restart nginx
+
+- name: Apply Nginx template
+  template:
+    src: nginx.conf.j2
+    dest: nginx_template
+  notify:
+    - restart nginx
+
+- name: Enable new site
+  file:
+    src: nginx_template
+    dest: nginx_enable_site
+    state: link
+  notify:
+    - restart nginx
+

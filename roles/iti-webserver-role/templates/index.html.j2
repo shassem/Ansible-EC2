@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Ansible Test</title>
+  <style>
+    body {
+      background: #4a4747;
+      color: maroon;
+    }
+  </style>
+</head>
+
+<body style="margin:0;">
+ 
+  <h1>Welcome {{ my_name }}</h1>
+  <div>
+  <p>My Private DNS: {{ ansible_nodename }} </p>
+</div>
+<div>
+  <p>My Private IP: {{ ansible_eth0.ipv4.address }} </p>
+</div>
+
+</body>
+
+</html>

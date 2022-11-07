@@ -1,0 +1,8 @@
+---
+# vars file for roles/iti-webserver-role
+nginx_pk:
+  - nginx
+nginx_svc: nginx
+nginx_html_dir_UB: /var/www/html
+nginx_template: /etc/nginx/sites-available/default
+nginx_enable_site: /etc/nginx/sites-enabled/default

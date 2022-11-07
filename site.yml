@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  become: true
+  roles:
+    - iti-webserver-role
+
+
+- hosts: jenkins_agents
+  become: true
+  roles:
+    - jenkins-role
+
+- hosts: dbservers
+  become: true
+  roles:
+    - mariadb-server
+  vars_files: roles/mariadb-server/vars/secrets.yml

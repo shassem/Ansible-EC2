@@ -1,0 +1,7 @@
+---
+# vars file for roles/jenkins-role
+java_pk: java-11-openjdk-devel
+jenkins_repo: http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+jenkins_dest: /etc/yum.repos.d/jenkins.repo
+jenkins_key: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+jenkins_pk: jenkins
